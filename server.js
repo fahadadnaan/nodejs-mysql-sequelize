@@ -8,7 +8,13 @@ const rateLimit = require("express-rate-limit");
 const xss = require('xss-clean')
 const driverApi = require('./routes/driverRoutes');
 const fridgecontentApi = require('./routes/fridgecontentRoutes');
+const cool = require('cool-ascii-faces')
+
 const app = express();
+
+app.get('/cool', (req, res) => res.send(cool()))
+
+
 
 app.use(bodyParser.json());
 app.use(logger('dev'));
