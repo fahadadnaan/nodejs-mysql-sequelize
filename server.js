@@ -9,6 +9,7 @@ const xss = require('xss-clean')
 const driverApi = require('./routes/driverRoutes');
 const fridgecontentApi = require('./routes/fridgecontentRoutes');
 const cool = require('cool-ascii-faces')
+const PORT = process.env.PORT || 5000;
 
 const app = express();
 
@@ -44,6 +45,6 @@ app.use((error, request, response, next) => {
     response.json({ error: error.message });
 });
 
-app.listen(5000, () => console.log("App listening on port 5000!"));
+app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
 
 module.exports = app;
