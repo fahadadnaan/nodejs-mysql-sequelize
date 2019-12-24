@@ -19,7 +19,6 @@
     "password": "593e8a5d",
     "database": "heroku_579f4e6da39a32a",
     "host": "eu-cdbr-west-02.cleardb.net",
-    "dialect": "mysql",
-    "operatorsAliases": false
-  }
+    "dialect": "mysql"
+    }
 }
