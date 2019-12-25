@@ -8,14 +8,17 @@ const rateLimit = require("express-rate-limit");
 const xss = require('xss-clean')
 const driverApi = require('./routes/driverRoutes');
 const fridgecontentApi = require('./routes/fridgecontentRoutes');
-const cool = require('cool-ascii-faces')
-const PORT = process.env.PORT || 5000;
-
+const cool = require('cool-ascii-faces');
+const http = require('http');
 const app = express();
+const server = http.createServer(app);
+
 
 app.get('/cool', (req, res) => res.send(cool()))
 
 
+
+  
 
 app.use(bodyParser.json());
 app.use(logger('dev'));
@@ -29,15 +32,9 @@ app.use(helmet());
 driverApi(app);
 fridgecontentApi(app);
 
-// App Security
 app.use(express.json({ limit: '10kb' })); 
-// const limit = rateLimit({
-//     max: 100,// max requests
-//     windowMs: 60 * 60 * 1000, // 1 Hour
-//     message: 'Too many requests' // message to send
-// });
-// app.use('/register', limit); // Setting limiter on specific route 
-// //app.use(limiter); //  apply to all requests if you want
+
+app.use(rateLimit); //  apply to all requests if you want
 
 
 app.use((error, request, response, next) => {
@@ -45,6 +42,8 @@ app.use((error, request, response, next) => {
     response.json({ error: error.message });
 });
 
-app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
-
+//start our server
+server.listen(process.env.PORT || 5000, () => {
+    console.log(`Server started on port ${server.address().port} :)`);
+});
 module.exports = app;
