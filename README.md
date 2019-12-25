@@ -10,5 +10,6 @@ Make sure you have MySql installed on your system, If you need more information 
 Clone the App
 npm install
 npx sequelize-cli db:migrate
+npm run dev
 You can now use the API on localhost 'http://127.0.0.1:5000/any routes'
 ~~~
