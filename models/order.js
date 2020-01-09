@@ -9,7 +9,12 @@ module.exports = (sequelize, DataTypes) => {
     updatedAt: {type: DataTypes.DATE, field: 'updated_at'},
   }, {});
   Order.associate = function(models) {
-    // associations can be defined here
+    Order.belongsTo(models.order_details, {
+      foreignKey: 'order_details_id'
+    });
+    Order.belongsTo(models.Customer, {
+      foreignKey: 'customer_id'
+    });
   };
   return Order;
 };

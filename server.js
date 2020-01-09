@@ -8,6 +8,7 @@ const rateLimit = require("express-rate-limit");
 const xss = require('xss-clean')
 const driverApi = require('./routes/driverRoutes');
 const materialApi = require('./routes/materialRoutes');
+const orderApi = require('./routes/orderRoute');
 const cool = require('cool-ascii-faces');
 const http = require('http');
 const app = express();
@@ -31,6 +32,7 @@ app.use(helmet());
 
 driverApi(app);
 materialApi(app);
+orderApi(app);
 
 app.use(express.json({ limit: '10kb' })); 
 
